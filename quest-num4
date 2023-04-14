@@ -1,22 +1,17 @@
 import java.util.Scanner;
 
-public class TokensComS {
+public class Tokenizer {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
-        System.out.print("Digite uma frase: ");
-        String frase = input.nextLine();
-        
-        String[] tokens = frase.split(" ");
-        
-        System.out.print("Tokens que começam com 's': ");
-        
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Digite uma frase:");
+        String input = sc.nextLine();
+        String[] tokens = input.split("\\s+"); // separa a String em tokens
+        System.out.println("Tokens que começam com 's':");
         for (String token : tokens) {
-            if (token.startsWith("s")) {
-                System.out.print(token + " ");
+            if (token.startsWith("s")) { // verifica se o token começa com 's'
+                System.out.println(token);
             }
         }
-        
-        input.close();
+        sc.close();
     }
 }
