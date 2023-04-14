@@ -1,1 +1,25 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class LinkFinder {
+    public static void main(String[] args) {
+        String text = "Este é um texto de exemplo com links para o Google e para o Facebook.";
+        List<String> linkWords = findLinkWords(text); // lista de palavras com "link"
+        System.out.println("Palavras com a subsequência 'link':");
+        for (String word : linkWords) {
+            System.out.println(word);
+        }
+    }
+
+    public static List<String> findLinkWords(String text) {
+        List<String> linkWords = new ArrayList<String>();
+        String[] words = text.split("\\s+");
+        for (String word : words) {
+            if (word.contains("link")) {
+                linkWords.add(word);
+            }
+        }
+        return linkWords;
+    }
+}
 
