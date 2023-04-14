@@ -1,22 +1,22 @@
 import java.util.Scanner;
 
-public class SomaDeNumeros {
+public class SomaNNumeros {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
         System.out.print("Digite a quantidade de números a serem somados: ");
         int n = input.nextInt();
-        
+
         int soma = 0;
-        
+
         for (int i = 1; i <= n; i++) {
-            System.out.print("Digite o " + i + "º número: ");
-            int num = input.nextInt();
-            soma += num;
+            System.out.printf("Digite o %dº número: ", i);
+            int numero = input.nextInt();
+            soma += numero;
         }
-        
-        System.out.println("A soma dos " + n + " números digitados é: " + soma);
-        
+
+        System.out.printf("A soma dos %d números digitados é: %d", n, soma);
+
         input.close();
     }
 }
