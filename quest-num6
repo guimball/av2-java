@@ -1,1 +1,73 @@
+import java.util.Random;
 
+public class MultiplicacaoMatrizes {
+    public static void main(String[] args) {
+
+        int linhasA = 3;
+        int colunasA = 2;
+        int linhasB = 2;
+        int colunasB = 4;
+
+        int[][] matrizA = gerarMatriz(linhasA, colunasA);
+        int[][] matrizB = gerarMatriz(linhasB, colunasB);
+
+        System.out.println("Matriz A:");
+        imprimirMatriz(matrizA);
+        System.out.println("Matriz B:");
+        imprimirMatriz(matrizB);
+
+        int[][] resultado = multiplicarMatrizes(matrizA, matrizB);
+
+
+        System.out.println("Resultado da multiplicação:");
+        imprimirMatriz(resultado);
+    }
+
+
+    public static int[][] gerarMatriz(int linhas, int colunas) {
+        Random random = new Random();
+        int[][] matriz = new int[linhas][colunas];
+
+        for (int i = 0; i < linhas; i++) {
+            for (int j = 0; j < colunas; j++) {
+                matriz[i][j] = random.nextInt(10); // Gerando um número aleatório entre 0 e 9
+            }
+        }
+
+        return matriz;
+    }
+
+
+    public static void imprimirMatriz(int[][] matriz) {
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[0].length; j++) {
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+
+    public static int[][] multiplicarMatrizes(int[][] matrizA, int[][] matrizB) {
+        int linhasA = matrizA.length;
+        int colunasA = matrizA[0].length;
+        int linhasB = matrizB.length;
+        int colunasB = matrizB[0].length;
+
+        if (colunasA != linhasB) {
+            throw new IllegalArgumentException("As matrizes não podem ser multiplicadas: o número de colunas de A deve ser igual ao número de linhas de B");
+        }
+
+        int[][] resultado = new int[linhasA][colunasB];
+
+        for (int i = 0; i < linhasA; i++) {
+            for (int j = 0; j < colunasB; j++) {
+                for (int k = 0; k < colunasA; k++) {
+                    resultado[i][j] += matrizA[i][k] * matrizB[k][j];
+                }
+            }
+        }
+
+        return resultado;
+    }
+}
