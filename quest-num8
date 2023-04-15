@@ -1,0 +1,51 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class AdivinhaNumeroGUI extends JFrame implements ActionListener {
+
+    private static final long serialVersionUID = 1L;
+    private JLabel label1;
+    private JButton[] buttons;
+    private int numeroEscolhido;
+    
+    public AdivinhaNumeroGUI() {
+        super("Adivinha Número");
+        
+        numeroEscolhido = (int)(Math.random() * 20) + 1;
+        
+        label1 = new JLabel("Tente adivinhar o número escolhido pelo programa!");
+        
+        buttons = new JButton[20];
+        for (int i = 0; i < 20; i++) {
+            buttons[i] = new JButton("" + (i+1));
+            buttons[i].addActionListener(this);
+        }
+        
+        JPanel panel = new JPanel(new GridLayout(5, 4));
+        panel.add(label1);
+        for (int i = 0; i < 20; i++) {
+            panel.add(buttons[i]);
+        }
+        add(panel);
+        
+        setSize(400, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+    
+    public void actionPerformed(ActionEvent e) {
+        int numeroEscolhidoPeloUsuario = Integer.parseInt(e.getActionCommand());
+        if (numeroEscolhidoPeloUsuario == numeroEscolhido) {
+            label1.setText("Parabéns, você acertou o número escolhido pelo programa!");
+        } else {
+            label1.setText("Você escolheu o número " + numeroEscolhidoPeloUsuario + ", mas o número escolhido pelo programa foi " + numeroEscolhido + ". Tente novamente!");
+        }
+    }
+    
+    public static void main(String[] args) {
+        AdivinhaNumeroGUI jogo = new AdivinhaNumeroGUI();
+    }
+
+}
+//nao consegui fazer o segundo item professor
